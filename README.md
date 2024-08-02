@@ -17,13 +17,13 @@
 
 **1. 任意のディレクトリで `lc init --path "<vscode-leeetcodeのバージョン>"` を実行する｡**
   
-  1.  カレントディレクトリに `leetcode/`, `config.json`, `problems/` が生成される
+  a.  カレントディレクトリに `leetcode/`, `config.json`, `problems/` が生成される
   
-  1.  `config.json` > `"leetcodeDirPath"` に ルートから`leetcode/` までのパスが設定される｡
+  b.  `config.json` > `"leetcodeDirPath"` に ルートから`leetcode/` までのパスが設定される｡
   
-  1.  `config.json` > `"vscodeLeetcodeVersion"` に `--path` の値が設定される｡
+  c.  `config.json` > `"vscodeLeetcodeVersion"` に `--path` の値が設定される｡
   
-  1.  vscode-leetcode ディレクトリにファイルが生成される｡
+  d.  vscode-leetcode ディレクトリにファイルが生成される｡
 
 ### 問題を解く
 
@@ -31,11 +31,11 @@
 
 **3. `leetcode/` の配下で `lc new-problem` を実行する｡**
   
-  3. `problems/` 配下に `<ワークブック名>/<問題番号><問題名>`が生成される｡
+  a. `problems/` 配下に `<ワークブック名>/<問題番号><問題名>`が生成される｡
   
-  3. `<問題番号><問題名>/` 配下に `step_count.json` が生成される｡
+  b. `<問題番号><問題名>/` 配下に `step_count.json` が生成される｡
   
-  3. `leetcode/config.json` > `"problemDirPath"` に `<問題番号><問題名>/` までのパスが設定される｡
+  c. `leetcode/config.json` > `"problemDirPath"` に `<問題番号><問題名>/` までのパスが設定される｡
 
 **4. VSCode で `Code Now` を押下し､`step_x.py`を生成し､問題を解く｡**
 
@@ -43,15 +43,15 @@
 
 **5. `leetcode/<ワークブック名>/<問題番号><問題名>/` の配下で `lc update-step` を実行する｡**
   
-  5. `step_x.py` が `step_count.json`> `"stepNumber"` をもとにナンバリングされる｡
+  a. `step_x.py` が `step_count.json`> `"stepNumber"` をもとにナンバリングされる｡
   
-  5. `step_count.json`> `"stepNumber"` が加算される｡
+  b. `step_count.json`> `"stepNumber"` が加算される｡
   
 ### Markdownを生成する
 
 **6. `leetcode/<ワークブック名>/<問題番号><問題名>/` の配下で `lc generate-md` を実行する｡**
   
-  6. `step_<number>.py` が集約された `problem.md` が生成される｡
+  a. `step_<number>.py` が集約された `problem.md` が生成される｡
 
 -----------------------
 
