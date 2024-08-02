@@ -16,9 +16,13 @@
 ### 初期設定
 
 1. 任意のディレクトリで `lc init --path "<vscode-leeetcodeのバージョン>"` を実行する｡
+  
   - カレントディレクトリに `leetcode/`, `config.json`, `problems/` が生成される
+  
   - `config.json` > `"leetcodeDirPath"` に ルートから`leetcode/` までのパスが設定される｡
+  
   - `config.json` > `"vscodeLeetcodeVersion"` に `--path` の値が設定される｡
+  
   - vscode-leetcode ディレクトリにファイルが生成される｡
 
 ### 問題を解く
@@ -26,8 +30,11 @@
 2. `<ワークブック名>-<問題番号>-<問題名>` という名前で origin main からブランチを切って､ブランチを切り変える｡
 
 3. `leetcode/` の配下で `lc new-problem` を実行する｡
+  
   - `problems/` 配下に `<ワークブック名>/<問題番号><問題名>`が生成される｡
+  
   - `<問題番号><問題名>/` 配下に `step_count.json` が生成される｡
+  
   - `leetcode/config.json` > `"problemDirPath"` に `<問題番号><問題名>/` までのパスが設定される｡
 
 4. VSCode で `Code Now` を押下し､`step_x.py`を生成し､問題を解く｡
@@ -35,12 +42,15 @@
 ### 解いた問題を管理する
 
 5. `leetcode/<ワークブック名>/<問題番号><問題名>/` の配下で `lc update-step` を実行する｡
+  
   - `step_x.py` が `step_count.json`> `"stepNumber"` をもとにナンバリングされる｡
+  
   - `step_count.json`> `"stepNumber"` が加算される｡
   
 ### Markdownを生成する
 
 6. `leetcode/<ワークブック名>/<問題番号><問題名>/` の配下で `lc generate-md` を実行する｡
+  
   - `step_<number>.py` が集約された `problem.md` が生成される｡
 
 -----------------------
@@ -54,6 +64,8 @@
 - stepファイル   : 解法が書かれているソースコード｡
 
 ## 想定しているディレクトリ構造
+
+```txt
 .
 └── leetcode
     ├── config.json
@@ -64,7 +76,8 @@
                 ├── step_x.py
                 ├── step_1.py
                 └── step_count.json
-                
+```
+          
 - `leetcode/`   : 基準となるディレクトリ｡この中ですべてを管理する｡
 
 - `config.json` : lc がうまく動作するための情報を管理する｡
