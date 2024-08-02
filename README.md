@@ -17,13 +17,13 @@
 
 **1. 任意のディレクトリで `lc init --path "<vscode-leeetcodeのバージョン>"` を実行する｡**
   
-  a.  カレントディレクトリに `leetcode/`, `config.json`, `problems/` が生成される
+  1.a.  カレントディレクトリに `leetcode/`, `config.json`, `problems/` が生成される
   
-  b.  `config.json` > `"leetcodeDirPath"` に ルートから`leetcode/` までのパスが設定される｡
+  1.b.  `config.json` > `"leetcodeDirPath"` に ルートから`leetcode/` までのパスが設定される｡
   
-  c.  `config.json` > `"vscodeLeetcodeVersion"` に `--path` の値が設定される｡
+  1.c.  `config.json` > `"vscodeLeetcodeVersion"` に `--path` の値が設定される｡
   
-  d.  vscode-leetcode ディレクトリにファイルが生成される｡
+  1.d.  vscode-leetcode ディレクトリにファイルが生成される｡
 
 ### 問題を解く
 
