@@ -17,7 +17,9 @@ func analysisSourceCode(content string) (string, string) {
 	for _, line := range lines {
 		trimmedLine := strings.TrimSpace(line)
 		if strings.HasPrefix(trimmedLine, "#") {
-			comments.WriteString(strings.TrimSpace(trimmedLine[1:]) + "\n")
+			if !strings.HasPrefix(trimmedLine, "# @lc") {
+				comments.WriteString(strings.TrimSpace(trimmedLine[1:]) + "\n")
+			}
 		} else {
 			code.WriteString(line + "\n")
 		}
