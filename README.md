@@ -15,15 +15,15 @@
 
 ### 初期設定
 
-**1. 任意のディレクトリで `lc init --path "<vscode-leeetcodeのバージョン>"` を実行する｡**
+**1. 任意のディレクトリで `lc init --version "<vscode-leeetcodeのバージョン>"` を実行する｡**
   
   1.  カレントディレクトリに `leetcode/`, `config.json`, `problems/` が生成される
   
   2.  `config.json` > `"leetcodeDirPath"` に ルートから`leetcode/` までのパスが設定される｡
   
-  3.  `config.json` > `"vscodeLeetcodeVersion"` に `--path` の値が設定される｡
+  3.  `config.json` > `"vscodeLeetcodeVersion"` に `--version` の値が設定される｡
   
-  4.  vscode-leetcode ディレクトリにファイルが生成される｡
+  4.  vscode-leetcode ディレクトリに `package.json` が生成される｡
 
 ### 問題を解く
 
@@ -37,11 +37,14 @@
   
   3. `leetcode/config.json` > `"problemDirPath"` に `<問題番号><問題名>/` までのパスが設定される｡
 
-**4. VSCode で `Code Now` を押下し､`step_x.py`を生成し､問題を解く｡**
+**4. VSCode で `Code Now` を押下し､ `leetcode/tmp` を問題生成先として指定する｡ `step_x.py`が生成され､問題を解く｡**
+  1.   VSCode の `setings.json` > `"leetcode.workspaceFolder"` に直接設定しても良い｡
 
 ### 解いた問題を管理する
 
 **5. `leetcode/<ワークブック名>/<問題番号><問題名>/` の配下で `lc update-step` を実行する｡**
+
+  1. `leetcode/tmp` 内の `step_x.py` が問題ディレクトリに移動される｡
   
   1. `step_x.py` が `step_count.json`> `"stepNumber"` をもとにナンバリングされる｡
   
@@ -68,6 +71,7 @@
 ```txt
 .
 └── leetcode
+    ├── tmp
     ├── config.json
     └── problems
         └── <workbook>
@@ -79,6 +83,8 @@
 ```
           
 - `leetcode/`   : 基準となるディレクトリ｡この中ですべてを管理する｡
+
+- `tmp` : `step_x.py`が生成されるディレクトリ｡
 
 - `config.json` : lc がうまく動作するための情報を管理する｡
   

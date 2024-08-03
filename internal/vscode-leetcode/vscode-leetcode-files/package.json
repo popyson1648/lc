@@ -634,8 +634,8 @@
             },
             "default": {
               "default": {
-                "folder": "${problem-dir-path}",
-                "filename": "${id}.${kebab-case-name}.${ext}"
+                "folder": "",
+                "filename": "step_x.${ext}"
               }
             }
           },
