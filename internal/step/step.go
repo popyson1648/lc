@@ -2,6 +2,7 @@ package step
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"lc/internal/config"
 	"os"
@@ -13,8 +14,7 @@ import (
 func UpdateStep() error {
 	cur, err := os.Getwd()
 	if err != nil {
-		fmt.Errorf("failed to get current directory: %w", err)
-		return err
+		return fmt.Errorf("failed to get current directory: %w", err)
 	}
 
 	configPath := filepath.Join(cur, "step_count.json")
@@ -52,4 +52,40 @@ func UpdateStep() error {
 
 	fmt.Println("step updated successfully.")
 	return nil
+}
+
+func Move(leetcodeDirPath string, problemDirPath string) error {
+	tmpDirPath := filepath.Join(leetcodeDirPath, "tmp")
+
+	// カレントディレクトリに step_x.py があるかチェック
+	if !Exists(tmpDirPath) {
+		return errors.New("step_x.py does not exist")
+	}
+
+	// step_x.py を 問題ディレクトリに移動
+	err := os.Rename(filepath.Join(tmpDirPath, "step_x.py"), filepath.Join(problemDirPath, "step_x.py"))
+	if err != nil {
+		return fmt.Errorf("failed to rename step_x.py: %w", err)
+	}
+
+	return nil
+}
+
+func Exists(path string) bool {
+	fileFound := false
+
+	files, err := os.ReadDir(path)
+	if err != nil {
+		fmt.Println("error reading directory: %w", err)
+	}
+
+	targetFile := "step_x.py"
+	for _, file := range files {
+		if file.Name() == targetFile {
+			fileFound = true
+			break
+		}
+	}
+
+	return fileFound
 }

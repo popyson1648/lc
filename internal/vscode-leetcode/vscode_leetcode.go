@@ -14,12 +14,6 @@ import (
 //go:embed vscode-leetcode-files/package.json
 var packageJSON []byte
 
-//go:embed vscode-leetcode-files/problemConfig.js
-var problemConfigJS []byte
-
-//go:embed vscode-leetcode-files/show.js
-var showJS []byte
-
 // getCurrentUsername 現在ログインしているユーザ名を返す
 func getCurrentUsername() (string, error) {
 	usr, err := user.Current()
@@ -57,44 +51,18 @@ func getVscodeLeetCodeDir(leetcodeDirPath string) (string, error) {
 	return vscodeLeetCodeDir, nil
 }
 
-// WriteFiles vscode-leetcode が lc と連携するためのファイル群を vscode-leetcode ディレクトリに生成
-func WriteFiles(leetcodeDirPath string) error {
+// OverWritePackageJson vscode-leetcode ディレクトリの package.json を上書き
+func OverWritePackageJson(leetcodeDirPath string) error {
 	vscodeLeetCodeDirPath, err := getVscodeLeetCodeDir(leetcodeDirPath)
 	if err != nil {
 		return err
 	}
 
-	files := map[string][]byte{
-		"package.json":     packageJSON,
-		"problemConfig.js": problemConfigJS,
-		"show.js":          showJS,
-	}
-
-	for name, data := range files {
-		filePath := filepath.Join(vscodeLeetCodeDirPath, name)
-		err := os.WriteFile(filePath, data, os.ModePerm)
-		if err != nil {
-			return fmt.Errorf("failed to write file %s: %w", filePath, err)
-		}
-		fmt.Printf("written %s to %s\n", name, filePath)
-	}
-
-	// config-path.json を生成
-	configPathData := map[string]string{
-		"leetcodeDirPath": leetcodeDirPath,
-	}
-
-	configPathJSON, err := json.MarshalIndent(configPathData, "", "  ")
+	filePath := filepath.Join(vscodeLeetCodeDirPath, "package.json")
+	err = os.WriteFile(filePath, packageJSON, os.ModePerm)
 	if err != nil {
-		return fmt.Errorf("failed to generate config-path.json: %w", err)
+		return fmt.Errorf("failed to write file %s: %w", filePath, err)
 	}
-
-	configPathFile := filepath.Join(vscodeLeetCodeDirPath, "config-path.json")
-	err = os.WriteFile(configPathFile, configPathJSON, os.ModePerm)
-	if err != nil {
-		return fmt.Errorf("failed to write config-path.json: %w", err)
-	}
-	fmt.Printf("written config-path.json to %s\n", configPathFile)
-
+	fmt.Printf("written package.json to %s\n", filePath)
 	return nil
 }

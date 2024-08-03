@@ -51,26 +51,15 @@ var updateStepCmd = &cobra.Command{
 			return
 		}
 
-		// カレントディレクトリに step_x.py があるかチェック
-		var files []os.DirEntry
-		// ディレクトリ内のファイルを取得
-		files, err = os.ReadDir(cur)
+		err = step.Move(leetcodeDirPath, problemDirPath)
 		if err != nil {
-			fmt.Println("error reading directory:", err)
+			fmt.Println("error while moving file:", err)
 			return
 		}
 
-		targetFile := "step_x.py"
-		fileFound := false
-		for _, file := range files {
-			if file.Name() == targetFile {
-				fileFound = true
-				break
-			}
-		}
-
-		if !fileFound {
-			fmt.Println("error step_x file not found")
+		// カレントディレクトリに step_x.py があるかチェック
+		if !step.Exists(cur) {
+			fmt.Println("step_x.py does not exist")
 			return
 		}
 

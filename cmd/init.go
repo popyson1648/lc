@@ -32,19 +32,19 @@ var initCmd = &cobra.Command{
 
 		cur, err := os.Getwd()
 		if err != nil {
-			fmt.Errorf("failed to get current directory: %w", err)
+			fmt.Println("failed to get current directory: %w", err)
 			return
 		}
 
 		leetcodeDirPath = filepath.Join(cur, "leetcode")
 
-		err = config.CreateLeetcodeDirAndConfig(leetcodeDirPath, vscodeLeetcodeVersion)
+		err = config.CreateDirAndFile(leetcodeDirPath, vscodeLeetcodeVersion)
 		if err != nil {
 			fmt.Println("Error creating files:", err)
 			return
 		}
 
-		err = vscode_leetcode.WriteFiles(leetcodeDirPath)
+		err = vscode_leetcode.OverWritePackageJson(leetcodeDirPath)
 		if err != nil {
 			fmt.Println("failed to write file to vscode-leetcode directory:", err)
 			return

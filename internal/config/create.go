@@ -13,13 +13,21 @@ type Config struct {
 	VscodeLeetcodeVersion string `json:"vscodeLeetcodeVersion"`
 }
 
-// CreateLeetcodeDirAndConfig leetcode/ とそのなかに config.json を生成
-func CreateLeetcodeDirAndConfig(leetcodeDirPath string, vscodeLeetcodeVersion string) error {
+// CreateDirAndFile leetcode/ とそのなかに config.json を生成
+func CreateDirAndFile(leetcodeDirPath string, vscodeLeetcodeVersion string) error {
+	// create leetcode dir
 	err := os.Mkdir(leetcodeDirPath, 0755)
 	if err != nil {
 		return fmt.Errorf("failed to create directory: %w", err)
 	}
 
+	// create tmp dir
+	err = os.Mkdir(filepath.Join(leetcodeDirPath, "tmp"), 0755)
+	if err != nil {
+		return fmt.Errorf("failed to create directory: %w", err)
+	}
+
+	// create config.json
 	configFilePath := filepath.Join(leetcodeDirPath, "config.json")
 	config := Config{
 		LeetcodeDirPath:       leetcodeDirPath,
